@@ -3,14 +3,17 @@ import { colors } from "./assets/colors";
 import { GlobalStyle } from "./assets/GlobalStyles";
 import Router from "./Router";
 import { BrowserRouter } from "react-router-dom";
+import { GlobalProvider } from "./contexts/GlobalContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <ThemeProvider theme={colors}>
-          <GlobalStyle />
-          <Router />
+          <GlobalProvider>
+            <GlobalStyle />
+            <Router />
+          </GlobalProvider>
         </ThemeProvider>
       </BrowserRouter>
     </>

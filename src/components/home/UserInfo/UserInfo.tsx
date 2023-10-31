@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import UserInfoBoxComponent from "./UserTextInfo";
+import { useGlobalContext } from "../../../contexts/GlobalContext";
 
 function UserInfo() {
+  const { gitHubUser} = useGlobalContext();
   return (
     <>
       <UserInfoBox>
         <div className="image-wrapper">
-          <img src="src/assets/Cover.png" alt="Profile Picture" />
+          <img src={gitHubUser.avatar_url} alt="Profile Picture" />
         </div>
         <UserInfoBoxComponent />
       </UserInfoBox>
@@ -16,48 +18,20 @@ function UserInfo() {
 
 export default UserInfo;
 
-export const UserTextInfo = styled.div`
-  width: 80%;
-  .title {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .github {
-    display: flex;
-    justify-content: space-between;
-    color: ${(props) => props.theme.blue};
-    gap: 10px ;
-    p {
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-  }
-
-  h2 {
-    color: ${(props) => props.theme.base_title};
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 130%;
-  }
-`;
 
 export const UserInfoBox = styled.div`
-  max-width: 864px;
+  width: min(864px, 90%);
   height: 212px;
-  flex-shrink: 0;
+  padding: 0 1em;
   background-color: ${(props) => props.theme.base_profile};
   border-radius: 10px;
   box-shadow: 0px 2px 28px 0px rgba(0, 0, 0, 0.2);
-  transform: translateY(-70px);
+  transform: translateY(-100px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   color: ${(props) => props.theme.base_text};
+  gap: 2em;
   .image-wrapper {
     width: 100px;
     height: 100px;

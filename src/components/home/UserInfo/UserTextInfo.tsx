@@ -2,40 +2,44 @@ import {
   ArrowSquareUpRight,
   Buildings,
   GithubLogo,
-  Person
+  Person,
 } from "@phosphor-icons/react";
 import { styled } from "styled-components";
+import { useGlobalContext } from "../../../contexts/GlobalContext";
+import { NavLink } from "react-router-dom";
 
 function UserInfoBoxComponent() {
+  const { gitHubUser } = useGlobalContext();
+
   return (
     <>
       <UserTextInfo>
         <div className="title">
-          <h2>Cameron Williamson</h2>
+          <h2>{gitHubUser.name}</h2>
           <div className="github">
-            <p>GITHUB</p>
+            <NavLink style={{textDecoration: "none", color: "inherit"}} to={gitHubUser.blog}>
+              <p>GITHUB</p>
+            </NavLink>
             <ArrowSquareUpRight />
           </div>
         </div>
         <div className="description">
-          <p>
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </p>
+          <p>{gitHubUser.bio}</p>
         </div>
         <Icons>
           <div className="icon">
             <GithubLogo weight="fill" />
-            <p>username</p>
+            <p>{gitHubUser.login}</p>
           </div>
-          <div className="icon">
-            <Buildings weight="fill" />
-            <p>company</p>
-          </div>
+          {gitHubUser.company !== null && (
+            <div className="icon">
+              <Buildings weight="fill" />
+              <p>{gitHubUser.company}</p>
+            </div>
+          )}
           <div className="icon">
             <Person weight="fill" />
-            <p>32 followers</p>
+            <p>{gitHubUser.followers} followers</p>
           </div>
         </Icons>
       </UserTextInfo>
@@ -66,7 +70,6 @@ export const Icons = styled.div`
 export const UserTextInfo = styled.div`
   width: 80%;
   height: 100%;
-  padding: 0 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -84,7 +87,7 @@ export const UserTextInfo = styled.div`
     justify-content: space-between;
     color: ${(props) => props.theme.blue};
     gap: 10px;
-    p {
+    a {
       font-size: 12px;
       font-style: normal;
       font-weight: 700;

@@ -35,7 +35,12 @@ export const LayoutWrapper = styled.div`
     }
   }
   .body {
-    width: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 230px);
     background-color: ${(props) => props.theme.base_background};
   }
 `;
