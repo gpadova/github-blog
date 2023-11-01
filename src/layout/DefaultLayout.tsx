@@ -22,7 +22,7 @@ export const LayoutWrapper = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center
   align-items: center;
   .header {
     width: 100%;
@@ -38,9 +38,8 @@ export const LayoutWrapper = styled.div`
     width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: calc(100vh - 230px);
+    height: 100vh ;
     background-color: ${(props) => props.theme.base_background};
   }
 `;

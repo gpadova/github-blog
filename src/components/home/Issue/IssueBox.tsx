@@ -1,19 +1,22 @@
 import { formatDistance } from "date-fns";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 interface IssueBoxProps {
     title: string;
     description: string;
-    created_at: string; 
+    created_at: string;
+    issueId: number; 
   }
 
-function IssueBox({title, description,  created_at}: IssueBoxProps) {
+function IssueBox({title, description,  created_at, issueId}: IssueBoxProps) {
     const timePassed = formatDistance(new Date(created_at),Date.now() , 
     {
         addSuffix: true
     })
   return (
     <>
+    <NavLink style={{textDecoration: "none"}} to={`/${issueId}`}>
       <IssueWrapper>
         <div className="title">
           <h3>{title}</h3>
@@ -23,6 +26,7 @@ function IssueBox({title, description,  created_at}: IssueBoxProps) {
           <p>{description}</p>
         </div>
       </IssueWrapper>
+    </NavLink>
     </>
   );
 }
@@ -74,5 +78,10 @@ export const IssueWrapper = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 160%;
+  }
+
+  @media (max-width:1000px) {
+    width: 85%;
+
   }
 `;
